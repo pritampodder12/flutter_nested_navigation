@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'screens/home_tab_screen.dart';
+import 'package:flutter/services.dart';
+import './screens/index.dart';
 import './providers/index.dart';
 
 void main() {
@@ -12,6 +12,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return ChangeNotifierProvider<HomeTabProvider>(
       create: (context) => HomeTabProvider(),
       child: MaterialApp(
@@ -20,7 +22,10 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: HomeTabScreen(),
+        home: FirstLaunch(),
+        routes: {
+          'home_tab': (context) => HomeTabScreen(),
+        },
       ),
     );
   }

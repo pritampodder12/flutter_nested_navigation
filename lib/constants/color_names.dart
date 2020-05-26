@@ -7,6 +7,6 @@ class ColorNames {
   static final black = Color(0xFF131313);
   static final white = Color(0xFFFFFFFF);
   static final green = Color.fromRGBO(76, 175, 80, 1);
-  static final primaryColor = Color.fromRGBO(4, 60, 73, 1.0);
+  static final primaryColor = Color.fromRGBO(0, 54, 71, 1.0);
   static final secondaryColor = Color.fromRGBO(195, 213, 0, 1.0);
 }

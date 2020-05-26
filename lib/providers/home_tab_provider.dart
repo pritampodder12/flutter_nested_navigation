@@ -13,10 +13,12 @@ class HomeTabProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<TabController> changeTab() async {}
+
   void changeToScanTabAndNavigate(String routeName) {
     tabController.animateTo(1);
     notifyListeners();
-    Timer(Duration(milliseconds: 400),
+    Timer(Duration(milliseconds: 300),
         () => scanNavKey.currentState.pushNamed(routeName));
   }
 }
