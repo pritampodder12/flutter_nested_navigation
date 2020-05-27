@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:async';
 
 import '../providers/index.dart';
 import '../constants/index.dart';
@@ -77,13 +78,23 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                       child: Icon(Icons.settings, color: Colors.grey[600])),
                   onTap: () {
                     Navigator.pop(context);
+
                     if (Provider.of<HomeTabProvider>(context, listen: false)
                             .tabController
                             .index !=
-                        1)
-                      Provider.of<HomeTabProvider>(context, listen: false)
-                          .changeToScanTabAndNavigate('settings');
-                    else
+                        1) {
+                      Navigator.pushReplacementNamed(context, 'home_tab');
+                      Timer(
+                          Duration(milliseconds: 0),
+                          () => Provider.of<HomeTabProvider>(
+                                  Navigator.of(context).context,
+                                  listen: false)
+                              .scanNavKey
+                              .currentState
+                              .pushNamed("settings"));
+                      // Provider.of<HomeTabProvider>(context, listen: false)
+                      //     .changeToScanTabAndNavigate('settings');
+                    } else
                       Provider.of<HomeTabProvider>(context, listen: false)
                           .scanNavKey
                           .currentState
