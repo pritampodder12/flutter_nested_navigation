@@ -83,11 +83,6 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                         1)
                       Provider.of<HomeTabProvider>(context, listen: false)
                           .changeToScanTabAndNavigate('settings');
-                    // else if (!Provider.of<HomeTabProvider>(context,
-                    //         listen: false)
-                    //     .scanNavKey
-                    //     .currentState
-                    //     .canPop())
                     else
                       Provider.of<HomeTabProvider>(context, listen: false)
                           .scanNavKey

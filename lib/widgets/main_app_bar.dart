@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:async';
 
 import '../providers/index.dart';
 import '../constants/index.dart';
@@ -64,33 +65,44 @@ Widget userIconButton(BuildContext context) => Material(
           ),
         ),
         onTap: () {
-          // SharedPreferences.getInstance().then((SharedPreferences sp) {
-          //   if (Provider.of<HomeTabProvider>(context, listen: false)
-          //           .tabController
-          //           .index !=
-          //       1)
-          //     Provider.of<HomeTabProvider>(context, listen: false)
-          //         .changeToScanTabAndNavigate(
-          //             sp.getBool('loggedIn') ? 'test_page' : 'login');
-          //   else
-          //     Navigator.of(context).pushNamed('login');
-          // Navigator.of(context).pushNamedAndRemoveUntil(
-          //     sp.getBool('loggedIn') ? 'test_page' : 'login',
-          //     (route) => route.isCurrent && route.settings.name == "login"
-          //         ? false
-          //         : true);
-          if (Provider.of<HomeTabProvider>(context, listen: false)
-                  .tabController
-                  .index !=
-              1)
-            Provider.of<HomeTabProvider>(context, listen: false)
-                .changeToScanTabAndNavigate('login');
-          else
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                "login",
-                (route) => route.isCurrent && route.settings.name == "login"
-                    ? false
-                    : true);
+          int count = 0;
+          while (true) {
+            if (Provider.of<HomeTabProvider>(context, listen: false)
+                    .tabController
+                    .index !=
+                1) {
+              if (count == 1) {
+                Timer(
+                    Duration(milliseconds: 0),
+                    () => Provider.of<HomeTabProvider>(
+                            Navigator.of(context).context,
+                            listen: false)
+                        .scanNavKey
+                        .currentState
+                        .pushNamed("login"));
+                break;
+              }
+              Navigator.of(Navigator.of(context).context)
+                  .pushReplacementNamed('home_tab');
+              count++;
+            } else {
+              Navigator.pushNamed(context, 'login');
+              break;
+            }
+          }
+          // (key: Provider.of<HomeTabProvider>(context, listen: false).scanNavKey)
+          // if (Provider.of<HomeTabProvider>(context, listen: false)
+          //         .tabController
+          //         .index !=
+          //     1)
+          //   Provider.of<HomeTabProvider>(context, listen: false)
+          //       .changeToScanTabAndNavigate('login');
+          // else
+          //   Navigator.of(context).pushNamedAndRemoveUntil(
+          //       "login",
+          //       (route) => route.isCurrent && route.settings.name == "login"
+          //           ? false
+          //           : true);
         },
       ),
     );

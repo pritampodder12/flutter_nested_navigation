@@ -148,4 +148,10 @@ class _HomeTabScreenState extends State<HomeTabScreen>
       ),
     );
   }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
 }
