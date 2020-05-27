@@ -64,6 +64,21 @@ Widget userIconButton(BuildContext context) => Material(
           ),
         ),
         onTap: () {
+          // SharedPreferences.getInstance().then((SharedPreferences sp) {
+          //   if (Provider.of<HomeTabProvider>(context, listen: false)
+          //           .tabController
+          //           .index !=
+          //       1)
+          //     Provider.of<HomeTabProvider>(context, listen: false)
+          //         .changeToScanTabAndNavigate(
+          //             sp.getBool('loggedIn') ? 'test_page' : 'login');
+          //   else
+          //     Navigator.of(context).pushNamed('login');
+          // Navigator.of(context).pushNamedAndRemoveUntil(
+          //     sp.getBool('loggedIn') ? 'test_page' : 'login',
+          //     (route) => route.isCurrent && route.settings.name == "login"
+          //         ? false
+          //         : true);
           if (Provider.of<HomeTabProvider>(context, listen: false)
                   .tabController
                   .index !=

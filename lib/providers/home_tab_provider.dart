@@ -13,12 +13,25 @@ class HomeTabProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<TabController> changeTab() async {}
+  GlobalKey<NavigatorState> currentNavigatorKey() {
+    switch (tabController.index) {
+      case 0:
+        return contactUsNavKey;
+        break;
+      case 1:
+        return scanNavKey;
+        break;
+      case 2:
+        return newsNavKey;
+        break;
+    }
+    return null;
+  }
 
   void changeToScanTabAndNavigate(String routeName) {
     tabController.animateTo(1);
     notifyListeners();
-    Timer(Duration(milliseconds: 300),
+    Timer(Duration(milliseconds: 350),
         () => scanNavKey.currentState.pushNamed(routeName));
   }
 }

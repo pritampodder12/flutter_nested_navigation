@@ -77,8 +77,22 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                       child: Icon(Icons.settings, color: Colors.grey[600])),
                   onTap: () {
                     Navigator.pop(context);
-                    Provider.of<HomeTabProvider>(context, listen: false)
-                        .changeToScanTabAndNavigate('settings');
+                    if (Provider.of<HomeTabProvider>(context, listen: false)
+                            .tabController
+                            .index !=
+                        1)
+                      Provider.of<HomeTabProvider>(context, listen: false)
+                          .changeToScanTabAndNavigate('settings');
+                    // else if (!Provider.of<HomeTabProvider>(context,
+                    //         listen: false)
+                    //     .scanNavKey
+                    //     .currentState
+                    //     .canPop())
+                    else
+                      Provider.of<HomeTabProvider>(context, listen: false)
+                          .scanNavKey
+                          .currentState
+                          .pushNamed('settings');
                   },
                 ),
                 Container(

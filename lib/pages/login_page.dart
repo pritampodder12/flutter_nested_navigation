@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/index.dart';
 import '../widgets/index.dart';
@@ -12,6 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  SharedPreferences sharedPreferences;
   @override
   Widget build(BuildContext context) {
     double ht = MediaQuery.of(context).size.height;
@@ -92,6 +93,11 @@ class _LoginPageState extends State<LoginPage> {
                             title: 'Sign In',
                             context: context,
                             onPressed: () {
+                              SharedPreferences.getInstance()
+                                  .then((SharedPreferences sp) {
+                                sp.setBool('loggedIn', true);
+                              });
+                              Navigator.of(context).pop();
                               // loginStatus.loginStatus("logged_in");
                               // skipTab.tabName("scan");
                               // Scaffold.of(context).showSnackBar(SnackBar(
@@ -106,8 +112,8 @@ class _LoginPageState extends State<LoginPage> {
                               //   ),
                               //   duration: Duration(seconds: 3),
                               // ));
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  "scan", (Route<dynamic> route) => false);
+                              // Navigator.of(context).pushNamedAndRemoveUntil(
+                              //     "scan", (Route<dynamic> route) => false);
                             }),
                       ),
                       InkWell(
