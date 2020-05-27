@@ -32,6 +32,7 @@ dependencies:
   searchable_dropdown: any
   flutter_svg: any
   shared_preferences: any
+  get_it: ^1.0.3
 
 
 dev_dependencies:

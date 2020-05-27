@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
+
 import './screens/index.dart';
 import './providers/index.dart';
+import './services/navigation_service.dart';
+import './locator.dart';
 
 void main() {
+  setupLocator();
   runApp(MyApp());
 }
 
@@ -23,9 +28,32 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: FirstLaunch(),
+        navigatorKey: locator<NavigationService>().navigatorKey,
         routes: {
           'home_tab': (context) => HomeTabScreen(),
         },
+      ),
+    );
+  }
+}
+
+class HomeView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('HomeView'),
+      ),
+    );
+  }
+}
+
+class LoginView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('LoginView'),
       ),
     );
   }
