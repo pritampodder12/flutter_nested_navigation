@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+
+import '../Types/TabControllerForSequencedAnimations.dart';
 
 class HomeTabProvider extends ChangeNotifier {
   GlobalKey<NavigatorState> contactUsNavKey = GlobalKey<NavigatorState>();
   GlobalKey<NavigatorState> scanNavKey = GlobalKey<NavigatorState>();
   GlobalKey<NavigatorState> newsNavKey = GlobalKey<NavigatorState>();
 
-  TabController tabController;
+  TabControllerForSequencedAnimations tabController;
 
   void setTabController(TabController controller) {
     tabController = controller;
     notifyListeners();
   }
 
-  Future<TabController> changeTab() async {}
-
-  void changeToScanTabAndNavigate(String routeName) {
-    tabController.animateTo(1);
-    notifyListeners();
-    Timer(Duration(milliseconds: 300),
-        () => scanNavKey.currentState.pushNamed(routeName));
+  void changeToScanTabAndNavigate(String routeName) async {
+    await tabController.animateTo(1);
+    scanNavKey.currentState.pushNamed(routeName);
   }
 }

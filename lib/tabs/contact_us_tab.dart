@@ -65,10 +65,9 @@ class _ContactUsTabState extends State<ContactUsTab>
                     width: double.infinity,
                     height: double.infinity,
                     color: Colors.grey[100],
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                    child: SingleChildScrollView(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: ListView(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       children: [
                         Material(
                             color: Colors.transparent,
@@ -77,6 +76,7 @@ class _ContactUsTabState extends State<ContactUsTab>
                               child: Container(
                                   width: 35,
                                   height: 35,
+                                  alignment: Alignment.centerLeft,
                                   padding: EdgeInsets.only(
                                       top: 5, right: 5, bottom: 5),
                                   child: Image(
@@ -213,7 +213,7 @@ class _ContactUsTabState extends State<ContactUsTab>
                           ),
                         )
                       ],
-                    ))))
+                    )))
             : UploadPhoto(
                 onClose: () {
                   setState(() {

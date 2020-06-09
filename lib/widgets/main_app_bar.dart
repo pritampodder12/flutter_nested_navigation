@@ -53,31 +53,18 @@ Widget appBarTitle({String title}) => Text(
 Widget userIconButton(BuildContext context) => Material(
       color: Colors.transparent,
       child: InkWell(
-        customBorder: CircleBorder(),
-        child: Container(
-          padding: EdgeInsets.all(10),
-          width: 44,
-          height: 40,
-          child: Image.asset(
-            ImageNames.userIcon,
-            color: Colors.white,
+          customBorder: CircleBorder(),
+          child: Container(
+            padding: EdgeInsets.all(10),
+            width: 44,
+            height: 40,
+            child: Image.asset(
+              ImageNames.userIcon,
+              color: Colors.white,
+            ),
           ),
-        ),
-        onTap: () {
-          if (Provider.of<HomeTabProvider>(context, listen: false)
-                  .tabController
-                  .index !=
-              1)
-            Provider.of<HomeTabProvider>(context, listen: false)
-                .changeToScanTabAndNavigate('login');
-          else
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                "login",
-                (route) => route.isCurrent && route.settings.name == "login"
-                    ? false
-                    : true);
-        },
-      ),
+          onTap: () => Provider.of<HomeTabProvider>(context, listen: false)
+              .changeToScanTabAndNavigate('login')),
     );
 
 Widget languageChangeIconButton(BuildContext context) => Material(

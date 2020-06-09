@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../providers/index.dart';
 import '../routes/index.dart';
 import '../constants/index.dart';
+import '../Types/TabControllerForSequencedAnimations.dart';
 
 class HomeTabScreen extends StatefulWidget {
   @override
@@ -13,13 +14,14 @@ class HomeTabScreen extends StatefulWidget {
 
 class _HomeTabScreenState extends State<HomeTabScreen>
     with SingleTickerProviderStateMixin {
-  TabController tabController;
+  TabControllerForSequencedAnimations tabController;
   int previousTabIndex = 1;
   @override
   void initState() {
     super.initState();
 
-    tabController = TabController(initialIndex: 1, length: 3, vsync: this);
+    tabController = TabControllerForSequencedAnimations(
+        initialIndex: 1, length: 3, vsync: this);
 
     tabController.addListener(handleTabChange);
 
