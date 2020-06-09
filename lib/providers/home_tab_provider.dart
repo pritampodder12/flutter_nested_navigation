@@ -15,7 +15,7 @@ class HomeTabProvider extends ChangeNotifier {
   }
 
   void changeToScanTabAndNavigate(String routeName) async {
-    await tabController.animateTo(1);
+    await tabController.animateTo(1, duration: Duration(milliseconds: 50));
     scanNavKey.currentState.pushNamed(routeName);
   }
 }
